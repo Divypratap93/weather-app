@@ -10,15 +10,17 @@
 .divContainer{
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    
     padding: 12px;
-    width: 200px;
-    height: 200px;
-    background-color: rgb(231, 230, 230);
-    color: rgb(0, 0, 0);
+    box-shadow:white;
+    background-color: #3572f4;
+    color: rgb(255, 255, 255);
     border-radius: 12px;
     justify-content: center;
     align-items: center;
+    
+    border-color: white;
+    border-style: solid;
 }
 
 #weather, #days{
@@ -33,4 +35,13 @@ body{
     display: flex;
     flex-direction: column;
     gap: 32px;
+    background-color: #2165f8;
+    color: white;
+}
+
+#heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

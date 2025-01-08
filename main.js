@@ -19,7 +19,12 @@ async function weather(location){
 
 const form = document.getElementById('location'); // Assuming this is a <form>
 form.addEventListener('submit' , (event) => {
+    
     event.preventDefault(); // Prevent form from reloading the page
+    document.getElementById('heading').innerHTML = '';
+    document.getElementById('days').innerHTML = '';
+    document.getElementById('weather').innerHTML = '';
+
     weatherData();
     
 });
@@ -29,11 +34,28 @@ form.addEventListener('submit' , (event) => {
 
 
 async function weatherData(){
+    
     const inputLocation = document.querySelector('#location input'); // Select the input inside the form
     
     const current = await weather(inputLocation.value);
     const days = current.days;
     const currentConditions = current.Conditions;
+
+
+    const heading = document.createElement('h1');
+    heading.textContent = inputLocation.value;
+    const locationCondition = currentConditions.conditions;
+    const conditionDiv = document.createElement('h3');
+    conditionDiv.textContent = locationCondition;
+    const currenttemp = document.createElement('h1');
+    currenttemp.textContent = currentConditions.temp + '°F'
+    document.getElementById('heading').appendChild(conditionDiv)
+    document.getElementById('heading').appendChild(heading)
+    document.getElementById('heading').appendChild(currenttemp)
+
+
+
+
     const uvindex = document.createElement('p');
     const uvindexText = document.createElement('h2')
     uvindexText.textContent ='UV Index';
@@ -97,16 +119,17 @@ const dayName = daysOfWeek[dayOfWeek];
 const day1 = document.createElement('h2');
 day1.textContent = dayName;
 
-            const div = document.createElement('div')
+        const div = document.createElement('div')
         div.className ='divContainer';
-        const tempmin = document.createElement('p');
-        tempmin.textContent = 'Min temp ' + day.tempmin
-        const tempmax = document.createElement('p');
-        tempmax.textContent = 'Max temp ' + day.tempmax
+        const temp = document.createElement('p');
+        temp.textContent = day.temp + '°F'
+        const condition = document.createElement('p');
+        condition.textContent = day.conditions;
         document.getElementById('days').appendChild(div);
+
         div.appendChild(day1);
-        div.appendChild(tempmin)
-        div.appendChild(tempmax)
+        div.appendChild(temp)
+        div.appendChild(condition)
 
         
         
